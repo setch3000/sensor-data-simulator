@@ -1,24 +1,7 @@
 import json
 from pprint import pprint
 from datetime import datetime, timedelta
-import pymongo
-from pymongo.errors import BulkWriteError
 import random
-
-def connect_db():
-    try:
-        client = pymongo.MongoClient("mongodb://docdb:browser7@docdb-2020-03-01-07-33-01.cluster-ctsprbvglf9q.us-east-1.docdb.amazonaws.com")
-        db = client["dev"]
-        col = db['data']
-        col.create_index([('timestamp', pymongo.DESCENDING)])
-        col.create_index([('result', pymongo.DESCENDING)])
-        col.create_index([('label', pymongo.DESCENDING)])
-        pprint(db.list_collection_names())
-        return db
-
-    except Exception as e:
-        print(e)
-
 
 def generate_data(config):
     # data = {}
